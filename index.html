@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown 제거기</title>
+</head>
+<body>
+    <h1>Markdown 제거기</h1>
+    <textarea id="markdown-input" rows="10" cols="50" placeholder="여기에 마크다운 텍스트를 입력하세요"></textarea>
+    <br>
+    <button onclick="removeMarkdown()">제거하기</button>
+    <h2>결과</h2>
+    <div id="plain-text-output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        function removeMarkdown() {
+            var markdownText = document.getElementById('markdown-input').value;
+            // 마크다운을 HTML로 변환
+            var htmlText = marked(markdownText);
+            // HTML 태그 제거하여 일반 텍스트 추출
+            var plainText = htmlText.replace(/<\/?[^>]+(>|$)/g, "");
+            document.getElementById('plain-text-output').innerText = plainText;
+        }
+    </script>
+</body>
+</html>
